@@ -62,7 +62,7 @@ public class WheelManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow)) //NOT WORKING AS IT SHOULD!!!
+        if (Input.GetKeyUp(KeyCode.LeftArrow)) //NOT WORKING AS IT SHOULD!!!
         {
             {
                 nextposition.z = currentPosition.z + degrees; // changes the Vector to the new one with the new Z coordinates.
@@ -73,18 +73,18 @@ public class WheelManager : MonoBehaviour
                 wheel.transform.DORotate(nextposition, rotateSpeed).SetEase(wheelCurve);
                 warship.transform.DORotate(shipPosition, rotateSpeed).SetEase(wheelCurve);
             }
-
-            if (Input.GetKey(KeyCode.RightArrow)) //NOT WORKING AS IT SHOULD!!!
-            {
-                nextposition.z = currentPosition.z - degrees;
-                currentPosition = nextposition;
-                shipPosition.z -= degrees;
-                //Debug.Log("Right! " +nextposition.z);
-                // wheel.transform.Rotate(new Vector3(wheel.transform.rotation.x, wheel.transform.rotation.y, wheel.transform.rotation.z - 15));
-                wheel.transform.DORotate(nextposition, rotateSpeed).SetEase(wheelCurve);
-                warship.transform.DORotate(shipPosition, rotateSpeed).SetEase(wheelCurve);
-            }
         }
 
+        else if (Input.GetKeyUp(KeyCode.RightArrow)) //NOT WORKING AS IT SHOULD!!!
+        {
+            nextposition.z = currentPosition.z - degrees;
+            currentPosition = nextposition;
+            shipPosition.z -= degrees;
+            //Debug.Log("Right! " +nextposition.z);
+            // wheel.transform.Rotate(new Vector3(wheel.transform.rotation.x, wheel.transform.rotation.y, wheel.transform.rotation.z - 15));
+            wheel.transform.DORotate(nextposition, rotateSpeed).SetEase(wheelCurve);
+            warship.transform.DORotate(shipPosition, rotateSpeed).SetEase(wheelCurve);
+        }
     }
+
 }
