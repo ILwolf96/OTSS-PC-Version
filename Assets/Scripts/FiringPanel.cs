@@ -34,6 +34,11 @@ public class FiringPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             cooldownTimer -= Time.deltaTime;
         }
+
+        if (cooldownTimer <= 0f && Input.GetKeyDown(KeyCode.Space))//fires when Spacebutton is pressed!
+        {
+            Fire();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -61,7 +66,7 @@ public class FiringPanel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    private void Fire()
+    public void Fire()
     {
         // Get the position and rotation of the player's ship
         Vector3 playerPosition = player.transform.position;

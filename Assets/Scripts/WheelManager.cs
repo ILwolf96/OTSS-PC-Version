@@ -26,28 +26,28 @@ public class WheelManager : MonoBehaviour
     private void Start()
     {
         currentPosition = new Vector3(wheel.transform.rotation.x, wheel.transform.rotation.y, wheel.transform.rotation.z); //Saves the initial wheel position to work from there, it means the inititial rotation of the wheel can be changed in Unity and it won't break everything!
-        shipPosition= wheel.transform.rotation.eulerAngles;
+        shipPosition = wheel.transform.rotation.eulerAngles;
     }
     // Update is called once per frame
     private void Update()
     {
-        
-        if(Input.touchCount>0)
+
+        if (Input.touchCount > 0)
         {
-            if(Input.GetTouch(0).phase== TouchPhase.Began) // Checks if touch has started.
+            if (Input.GetTouch(0).phase == TouchPhase.Began) // Checks if touch has started.
             {
-                
-                if ((Input.GetTouch(0).position.x < wheel.transform.position.x)&&Input.GetTouch(0).position.x>leftBorder.transform.position.x) // if its on the left side of the screen, rotate the wheel left.
+
+                if ((Input.GetTouch(0).position.x < wheel.transform.position.x) && Input.GetTouch(0).position.x > leftBorder.transform.position.x) // if its on the left side of the screen, rotate the wheel left.
                 {
-                    nextposition.z=currentPosition.z+degrees; // changes the Vector to the new one with the new Z coordinates.
+                    nextposition.z = currentPosition.z + degrees; // changes the Vector to the new one with the new Z coordinates.
                     currentPosition = nextposition; //...Kinda Pointless to be honest, it made sense when I wrote it Okay? - Sahar
                     shipPosition.z += degrees; // Its the two above lines compressed into one, its for the ship though
                     //Debug.Log("Left! " + nextposition.z);
                     //wheel.transform.Rotate(new Vector3(wheel.transform.rotation.x, wheel.transform.rotation.y, wheel.transform.rotation.z + 15));
-                    wheel.transform.DORotate(nextposition,rotateSpeed).SetEase(wheelCurve);
-                    warship.transform.DORotate(shipPosition,rotateSpeed).SetEase(wheelCurve);
+                    wheel.transform.DORotate(nextposition, rotateSpeed).SetEase(wheelCurve);
+                    warship.transform.DORotate(shipPosition, rotateSpeed).SetEase(wheelCurve);
                 }
-                else if ((Input.GetTouch(0).position.x > wheel.transform.position.x)&& Input.GetTouch(0).position.x < rightBorder.transform.position.x) // if its on the right side of the screen, rotate the wheel right, literally just a mirrored version of the first if.
+                else if ((Input.GetTouch(0).position.x > wheel.transform.position.x) && Input.GetTouch(0).position.x < rightBorder.transform.position.x) // if its on the right side of the screen, rotate the wheel right, literally just a mirrored version of the first if.
                 {
                     nextposition.z = currentPosition.z - degrees;
                     currentPosition = nextposition;
@@ -57,9 +57,34 @@ public class WheelManager : MonoBehaviour
                     wheel.transform.DORotate(nextposition, rotateSpeed).SetEase(wheelCurve);
                     warship.transform.DORotate(shipPosition, rotateSpeed).SetEase(wheelCurve);
                 }
-               // else
-               //     Debug.Log("Center!"); // I was taught to prepare for every scenario, Is here because of testing.
+                // else
+                //     Debug.Log("Center!"); // I was taught to prepare for every scenario, Is here because of testing.
             }
         }
+
+        if (Input.GetKey(KeyCode.LeftArrow)) //NOT WORKING AS IT SHOULD!!!
+        {
+            {
+                nextposition.z = currentPosition.z + degrees; // changes the Vector to the new one with the new Z coordinates.
+                currentPosition = nextposition; //...Kinda Pointless to be honest, it made sense when I wrote it Okay? - Sahar
+                shipPosition.z += degrees; // Its the two above lines compressed into one, its for the ship though
+                                           //Debug.Log("Left! " + nextposition.z);
+                                           //wheel.transform.Rotate(new Vector3(wheel.transform.rotation.x, wheel.transform.rotation.y, wheel.transform.rotation.z + 15));
+                wheel.transform.DORotate(nextposition, rotateSpeed).SetEase(wheelCurve);
+                warship.transform.DORotate(shipPosition, rotateSpeed).SetEase(wheelCurve);
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow)) //NOT WORKING AS IT SHOULD!!!
+            {
+                nextposition.z = currentPosition.z - degrees;
+                currentPosition = nextposition;
+                shipPosition.z -= degrees;
+                //Debug.Log("Right! " +nextposition.z);
+                // wheel.transform.Rotate(new Vector3(wheel.transform.rotation.x, wheel.transform.rotation.y, wheel.transform.rotation.z - 15));
+                wheel.transform.DORotate(nextposition, rotateSpeed).SetEase(wheelCurve);
+                warship.transform.DORotate(shipPosition, rotateSpeed).SetEase(wheelCurve);
+            }
+        }
+
     }
 }

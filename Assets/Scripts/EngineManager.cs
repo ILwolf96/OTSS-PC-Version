@@ -37,13 +37,16 @@ public class EngineManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(boatGear)
+        switch (boatGear)
         {
-            case 1: warship.transform.position += warship.transform.up*firstGear*Time.deltaTime;
+            case 1:
+                warship.transform.position += warship.transform.up * firstGear * Time.deltaTime;
                 break;
-            case 2: warship.transform.position += warship.transform.up * secondGear * Time.deltaTime;
+            case 2:
+                warship.transform.position += warship.transform.up * secondGear * Time.deltaTime;
                 break;
-            case -1: warship.transform.position -= warship.transform.up * firstGear * Time.deltaTime;
+            case -1:
+                warship.transform.position -= warship.transform.up * firstGear * Time.deltaTime;
                 break;
             case -2:
                 warship.transform.position -= warship.transform.up * secondGear * Time.deltaTime;
@@ -52,7 +55,7 @@ public class EngineManager : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            if(touch.position.x>border.transform.position.x)
+            if (touch.position.x > border.transform.position.x)
             {
                 switch (touch.phase)
                 {
@@ -61,7 +64,7 @@ public class EngineManager : MonoBehaviour
                         originalPosition = touch.position;
                         //Debug.Log("Started Tracking");
                         break;
-                    case TouchPhase.Moved: 
+                    case TouchPhase.Moved:
                         //tracks current direction to know where to shift the gear to.
                         direction = touch.position - originalPosition;
                         //Debug.Log("Tracking...");
@@ -88,7 +91,12 @@ public class EngineManager : MonoBehaviour
                 }
             }
         }
+
+
+
     }
+
+
     private void changeShift() //This Method handles the change in the gear shifts for the boat...Boats have no gears.
     {
         //Sets all levers to false so it could be changed to the correct one.
