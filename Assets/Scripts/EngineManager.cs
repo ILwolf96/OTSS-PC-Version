@@ -97,6 +97,17 @@ public class EngineManager : MonoBehaviour
     }
 
 
+    public void GearButtonUp()
+    {
+        boatGear++;
+        changeShift();
+    }
+
+    public void GearButtonDown()
+    {
+        boatGear--;
+        changeShift();
+    }
     private void changeShift() //This Method handles the change in the gear shifts for the boat...Boats have no gears.
     {
         //Sets all levers to false so it could be changed to the correct one.
