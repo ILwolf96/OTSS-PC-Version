@@ -62,7 +62,7 @@ public class WheelManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftArrow)) //NOT WORKING AS IT SHOULD!!!
+        if (Input.GetKeyUp(KeyCode.A)) //NOT WORKING AS IT SHOULD!!!
         {
             {
                 nextposition.z = currentPosition.z + degrees; // changes the Vector to the new one with the new Z coordinates.
@@ -75,7 +75,7 @@ public class WheelManager : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyUp(KeyCode.RightArrow)) //NOT WORKING AS IT SHOULD!!!
+        else if (Input.GetKeyUp(KeyCode.D)) //NOT WORKING AS IT SHOULD!!!
         {
             nextposition.z = currentPosition.z - degrees;
             currentPosition = nextposition;
